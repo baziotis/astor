@@ -17,14 +17,14 @@ The goals of the initial cut of this engine are:
 """
 
 
-def pretty_source(source):
+def pretty_source(source, maxline=79):
     """ Prettify the source.
     """
 
-    return ''.join(split_lines(source))
+    return ''.join(split_lines(source, maxline))
 
 
-def split_lines(source, maxline=79):
+def split_lines(source, maxline):
     """Split inputs according to lines.
        If a line is short enough, just yield it.
        Otherwise, fix it.
@@ -59,7 +59,7 @@ def count(group, slen=str.__len__):
     return sum([slen(x) for x in group])
 
 
-def wrap_line(line, maxline=79, result=[], count=count):
+def wrap_line(line, maxline, result=[], count=count):
     """ We have a line that is too long,
         so we're going to try to wrap it.
     """

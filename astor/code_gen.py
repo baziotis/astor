@@ -28,7 +28,7 @@ from .string_repr import pretty_string
 from .source_repr import pretty_source
 
 
-def to_source(node, indent_with=' ' * 4, add_line_information=False,
+def to_source(node, indent_with=' ' * 4, add_line_information=False, maxline=79,
               pretty_string=pretty_string, pretty_source=pretty_source,
               source_generator_class=None):
     """This function can convert a node tree back into python sourcecode.
@@ -64,7 +64,7 @@ def to_source(node, indent_with=' ' * 4, add_line_information=False,
     generator.result.append('\n')
     if set(generator.result[0]) == set('\n'):
         generator.result[0] = ''
-    return pretty_source(generator.result)
+    return pretty_source(generator.result, maxline=maxline)
 
 
 def precedence_setter(AST=ast.AST, get_op_precedence=get_op_precedence,
