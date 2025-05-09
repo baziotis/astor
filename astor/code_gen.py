@@ -700,7 +700,7 @@ class SourceGenerator(ExplicitNodeVisitor):
 
             def recurse(node):
                 for value in node.values:
-                    if isinstance(value, ast.Str):
+                    if isinstance(value, ast.Constant) and isinstance(value.value, str):
                         # Double up braces to escape them.
                         self.write(value.s.replace('{', '{{').replace('}', '}}'))
                     elif isinstance(value, ast.FormattedValue):
